@@ -6,8 +6,10 @@ export const getTodosGroupedByColumn = async () => {
     process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!
   );
   const todos = data.documents;
+  console.log('todos', todos);
+
   const columns = todos.reduce((acc, todo) => {
-    // 3shan momken matb2ash mawgoda zay msln mafesh column le al inprogress
+    // if the Map<TypedColumn, Column>() doesn't contain the column name set it and then get it
     if (!acc.get(todo.status))
       acc.set(todo.status, {
         id: todo.status,
@@ -24,7 +26,7 @@ export const getTodosGroupedByColumn = async () => {
     return acc;
   }, new Map<TypedColumn, Column>());
 
-  // if columns dosen't have inprogress, todo, and done, add them with empty todos
+  // if columns dosen't have todos inprogress, todo, and done, add them with empty todos
   const columnTypes: TypedColumn[] = ['todo', 'inprogress', 'done'];
   for (const columnType of columnTypes) {
     if (!columns.get(columnType))
