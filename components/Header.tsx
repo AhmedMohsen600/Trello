@@ -38,7 +38,7 @@ function Header() {
           <Avatar name='Ahmed Mohsen' size='50' round color='#0055D1' />
         </div>
       </div>
-      <div className='flex items-center justify-center py-2 px-5 md:py-5'>
+      <div className='flex items-center justify-center py-2 px-5 md:py-5 opacity-0 pointer-events-none'>
         <p className='flex items-center text-sm font-light p-5 pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#0055D1]'>
           <UserCircleIcon className='inline-block h-10 w-10 text-[#0055D1] mr-1' />
           GPT iS summiring your tasks for the day...

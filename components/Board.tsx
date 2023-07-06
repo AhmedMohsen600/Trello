@@ -95,6 +95,12 @@ function Board() {
       });
     }
   };
+  // console.log(
+  //   'just something',
+  //   Array.from(board.columns.entries()).map(([id, column]) =>
+  //     console.log(id, column)
+  //   )
+  // );
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -116,3 +122,16 @@ function Board() {
 }
 
 export default Board;
+
+// type CartItem = {
+//   id: number;
+//   qty: number;
+// };
+
+// const cartItems: CartItem[] = [
+//   { id: 1, qty: 0 },
+//   { id: 2, qty: 0 },
+//   { id: 3, qty: 0 },
+// ];
+
+// const cartQty = cartItems.reduce((qty, item) => item.qty + qty, 0);

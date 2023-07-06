@@ -1,4 +1,5 @@
 import { useBoardStore } from '@/store/boardStore';
+import { useModalStore } from '@/store/modalStore';
 import { PlusCircleIcon } from '@heroicons/react/24/solid';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import TodoCard from './TodoCard';
@@ -25,7 +26,8 @@ const idToColumnText: {
 
 function Column({ id, index, todos }: ColumnProps) {
   const { searchString } = useBoardStore((state) => state);
-  // if searchString is empty or undefined then return all todos else return todos that only includes the search string
+  const openModal = useModalStore((state) => state.openModal);
+  // if searchString is empty or undefined then return all todos else return todos that only includes the searchString
   const filteredTodos = todos.filter(
     (todo) =>
       !searchString ||
@@ -65,7 +67,7 @@ function Column({ id, index, todos }: ColumnProps) {
                       {(provider) => (
                         <TodoCard
                           todo={todo}
-                          // imgUrl={todo.image?.bucketId}
+                          imgUrl={todo.image?.bucketId}
                           index={index}
                           id={id}
                           innerRef={provider.innerRef}
@@ -77,7 +79,10 @@ function Column({ id, index, todos }: ColumnProps) {
                   ))}
                   {provider.placeholder}
                   <div className='flex items-end justify-end p-2'>
-                    <button className='text-green-500 hover:text-green-600'>
+                    <button
+                      onClick={openModal}
+                      className='text-green-500 hover:text-green-600'
+                    >
                       <PlusCircleIcon className='h-10 w-10' />
                     </button>
                   </div>
