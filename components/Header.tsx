@@ -12,7 +12,7 @@ function Header() {
   const { searchString, setSearchString } = useBoardStore((state) => state);
   return (
     <header>
-      <div className='flex flex-col md:flex-row item-center p-5 bg-gray-500/10 rounded-b-2xl '>
+      <div className='flex flex-col md:flex-row item-center p-5 bg-gray-500/10 rounded-b-2xl mb-8'>
         <div className='absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50' />
         <Image
           src='https://links.papareact.com/c2cdd5'
@@ -37,12 +37,6 @@ function Header() {
           </form>
           <Avatar name='Ahmed Mohsen' size='50' round color='#0055D1' />
         </div>
-      </div>
-      <div className='flex items-center justify-center py-2 px-5 md:py-5 opacity-0 pointer-events-none'>
-        <p className='flex items-center text-sm font-light p-5 pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#0055D1]'>
-          <UserCircleIcon className='inline-block h-10 w-10 text-[#0055D1] mr-1' />
-          GPT iS summiring your tasks for the day...
-        </p>
       </div>
     </header>
   );
