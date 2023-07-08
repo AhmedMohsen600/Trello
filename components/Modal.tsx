@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useRef } from 'react';
+import { FormEvent, Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useModalStore } from '@/store/modalStore';
 import { useBoardStore } from '@/store/boardStore';
@@ -11,12 +11,29 @@ import { PhotoIcon } from '@heroicons/react/24/solid';
 export default function Modal() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
   const { isOpen, closeModal } = useModalStore((state) => state);
-  const { newTaskInput, setNewTaskInput, setImage, image } = useBoardStore(
-    (state) => state
-  );
+  const {
+    newTaskInput,
+    setNewTaskInput,
+    setImage,
+    image,
+    newTaskType,
+    addTodo,
+  } = useBoardStore((state) => state);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!newTaskInput.trim()) return;
+    addTodo(newTaskInput, newTaskType, image);
+    setImage(null);
+    closeModal();
+  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as='form' className='relative z-10' onClose={closeModal}>
+      <Dialog
+        as='form'
+        onSubmit={handleSubmit}
+        className='relative z-10'
+        onClose={closeModal}
+      >
         <Transition.Child
           as={Fragment}
           enter='ease-out duration-300'
@@ -52,11 +69,11 @@ export default function Modal() {
                     onChange={(e) => setNewTaskInput(e.target.value)}
                     placeholder='Enter a task here...'
                     type='text'
-                    className='w-full border-gray-300 rounded-md outline-none p-5'
+                    className='w-full border border-gray-300 rounded-md outline-none p-5'
                   />
                 </div>
                 <TaskTypeRadioGroup />
-                <div>
+                <div className='mt-2'>
                   <button
                     type='button'
                     onClick={() => imagePickerRef.current?.click()}
@@ -85,6 +102,15 @@ export default function Modal() {
                       setImage(e.target.files![0]);
                     }}
                   />
+                </div>
+                <div className='mt-4'>
+                  <button
+                    disabled={!newTaskInput.trim()}
+                    type='submit'
+                    className='inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 foucs:outline-none foucs-visible:ring-2 foucs-visible:ring-blue-600 foucs-visible:ring-offset-2 disabled:bg-gray-100 disabled:text-gray-300 disabled:cursor-not-allowed'
+                  >
+                    Add Task
+                  </button>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

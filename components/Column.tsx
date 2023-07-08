@@ -25,7 +25,7 @@ const idToColumnText: {
 // -------------------------------------------------
 
 function Column({ id, index, todos }: ColumnProps) {
-  const { searchString } = useBoardStore((state) => state);
+  const { searchString, setNewTaskType } = useBoardStore((state) => state);
   const openModal = useModalStore((state) => state.openModal);
   // if searchString is empty or undefined then return all todos else return todos that only includes the searchString
   const filteredTodos = todos.filter(
@@ -33,6 +33,11 @@ function Column({ id, index, todos }: ColumnProps) {
       !searchString ||
       todo.title.toLowerCase().includes(searchString.toLowerCase())
   );
+
+  const handleModal = () => {
+    openModal();
+    setNewTaskType(id);
+  };
 
   return (
     <Draggable draggableId={id} index={index}>
@@ -80,7 +85,7 @@ function Column({ id, index, todos }: ColumnProps) {
                   {provider.placeholder}
                   <div className='flex items-end justify-end p-2'>
                     <button
-                      onClick={openModal}
+                      onClick={handleModal}
                       className='text-green-500 hover:text-green-600'
                     >
                       <PlusCircleIcon className='h-10 w-10' />

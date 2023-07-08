@@ -70,6 +70,7 @@ function Board() {
       };
 
       const newColumns = board.columns.set(startCol.id, newCol);
+
       setBoardState({
         ...board,
         columns: newColumns,
@@ -95,12 +96,6 @@ function Board() {
       });
     }
   };
-  // console.log(
-  //   'just something',
-  //   Array.from(board.columns.entries()).map(([id, column]) =>
-  //     console.log(id, column)
-  //   )
-  // );
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
