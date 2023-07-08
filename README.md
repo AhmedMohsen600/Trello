@@ -2,7 +2,7 @@
 
 Trello is a Trello-like web application built using Next.js, TypeScript, React Beautiful DnD for drag and drop functionality, and Zustand as state management. It provides a simple and intuitive interface for managing tasks with three columns: Todo, In Progress, and Done. Users can easily drag and drop columns and todos to organize their tasks efficiently.
 
-<img width="1440" alt="Screen Shot 2023-07-06 at 5 38 25 PM" src="https://github.com/AhmedMohsen600/Trello/assets/55211914/2470e07a-1fe7-4b8a-ad32-29de6bc95633">
+<img width="1440" alt="Screen Shot 2023-07-08 at 5 59 22 PM" src="https://github.com/AhmedMohsen600/Trello/assets/55211914/be1031dc-e819-43e7-a2b9-b59013cebe46">
 
 ## Features
 
