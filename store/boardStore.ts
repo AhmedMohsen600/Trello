@@ -125,13 +125,3 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     );
   },
 }));
-
-// if (image) {
-//   const fileUploaded = await uploadImage(image);
-//   if (fileUploaded) {
-//     file = {
-//       bucketId: fileUploaded.bucketId,
-//       fileId: fileUploaded.$id,
-//     };
-//   }
-// }
